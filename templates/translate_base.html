@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}<title>Translate Tool</title> {% endblock %}
+
+{% block body %}<body class="profile-page sidebar-collapse">{% endblock %}
+
+{% block content %}
+
+<div class="page-header" data-parallax="true" style="background: linear-gradient(45deg, #000000 0%, #000000 100%);">
+  <div id="particles-js"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <h1 style="font-family: 'Work Sans', Arial, sans-serif;"><strong style="font-weight: 1600;">Translate Tool</strong></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="contact-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <form id="translate" action="" method="POST" style="padding: 40px; padding-left: 20px; padding-right: 20px;">
+              {% csrf_token %}
+              {% for message in messages %}
+                <h5 class="text-danger">{{message}}</h5>
+              {% endfor %}
+              
+              <div class="form-group label-floating">
+                <label class="form-control-label bmd-label-floating" for="message"> Please enter DNA or RNA sequence</label>
+                <textarea class="form-control" rows="7" id="message" name="sequence" required></textarea>
+                <span class="bmd-help">Without Spacing</span>
+              </div>
+              <div class="row">
+                <h4>Sequence Type</h4>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="DNA" id="exampleRadios1" value="option1" checked>
+                  DNA
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>              
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="DNA" id="exampleRadios2" value="option2">
+                  RNA
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="row">
+                <h4>Strands</h4>
+              </div>
+              <div class="row" style="padding-left: 15px;">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="forward" checked>
+                    Forward
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+                <div class="form-check" style="padding-left: 20px;">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="reverse" checked>
+                    Reverse
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <h4>Genetic Codes</h4>
+            
+              </div>
+              <div class="row">
+                  <select class="selectpicker" name="gencode" data-style="select-with-transition" title="Select" data-size="10">
+                    <option value="1" selected>Standard</option>
+                    <option value="2">Vertebrate mitochondrial</option>
+                    <option value="3">Yeast mitochondrial </option>
+                    <option value="4">Mold, protozoan and coelenterate mitochondrial, mycoplasma/spiroplasma </option>
+                    <option value="5">Invertebrate mitochondrial </option>
+                    <option value="6">Ciliate, dasycladacean and hexamita nuclear </option>
+                    <option value="9">Echinoderm and flatworm mitochondrial </option>
+                    <option value="10">Euplotid nuclear </option>
+                    <option value="12">Alternative yeast nuclear </option>
+                    <option value="13">Ascidian mitochondrial </option>
+                    <option value="14">Alternative flatworm mitochondrial </option>
+                    <option value="12">Blepharisma nuclear </option>
+                    <option value="16">Chlorophycean mitochondrial </option>
+                    <option value="21">Trematode mitochondrial </option>
+                    <option value="22">Scenedesmus obliquus mitochondrial </option>
+                    <option value="24">Pterobranchia mitochondrial </option>
+                  </select>
+              </div>
+              
+              <div class="submit text-center" style="padding-top: 40px;">
+                <input type="submit" class="btn btn-info btn-raised btn-round" value="Translate">
+                <button type="reset" class="btn btn-danger btn-fab btn-round">
+                  <i class="material-icons">refresh</i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-md-4 ml-auto">
+              <div class="card bg-dark">
+                <div class="card-body">
+                  <h5 class="card-category card-category-social">
+                    <i class="fa fa-newspaper-o"></i> How to use the tool:
+                  </h5>
+                  <p class="card-description">
+                    Input a valid dna or rna sequence like: 
+                    <br>
+                    <br>ATGAAACGCATTAGCACCACCATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGA
+
+ 
+                   <br> 
+                   <br>
+                   And instantly get 3 frame protein sequence
+                  </p>
+      
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
